@@ -17,6 +17,7 @@ namespace ElasticSearchCRUD.Services
             client = new ElasticClient(settings);
         }
 
+        // Shu id bilan yana qo'shilsa yangi qo'shvormaydi update qiladi
         public async Task<bool> CreateBookAsync(Book book)
         {
             var indexResponse = await client.IndexDocumentAsync(book);
@@ -25,9 +26,9 @@ namespace ElasticSearchCRUD.Services
 
         public async Task<List<Book>> GetAllBooks()
         {
-            var esResponse = (await client.SearchAsync<Book>()).Documents;
+            var esResponse = await client.SearchAsync<Book>();
 
-            return esResponse.ToList();
+            return esResponse.Documents.ToList();
         }
 
         public async Task<Book> GetBookAsync(int id)
