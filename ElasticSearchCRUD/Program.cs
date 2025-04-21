@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IBookElasticSearchCRUDService, BookElasticSearchCRUDService>();
+builder.Services.AddSingleton<ElasticSearchService>();
 
 var app = builder.Build();
 

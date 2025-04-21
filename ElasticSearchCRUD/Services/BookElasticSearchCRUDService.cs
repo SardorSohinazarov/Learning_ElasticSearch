@@ -10,8 +10,9 @@ namespace ElasticSearchCRUD.Services
 
         public BookElasticSearchCRUDService()
         {
-            var settings = new ConnectionSettings(new Uri("http://localhost:9200"))
-                .DefaultIndex("books_index");
+            var settings = new ConnectionSettings(new SingleNodeConnectionPool(new Uri("http://elasticsearch:9200")))
+                .DefaultIndex("books_index")
+                .EnableApiVersioningHeader();
 
             client = new ElasticClient(settings);
         }
