@@ -24,7 +24,10 @@ namespace ElasticSearchCRUD.Controllers
         public async Task<IActionResult> Search([FromQuery] string query)
         {
             var response = await _elasticSearchService.SearchAsync(query);
-            return Ok(response.Documents);
+            if (response == null || response.Count == 0)
+                return NotFound("No results found");
+
+            return Ok(response);
         }
     }
 }

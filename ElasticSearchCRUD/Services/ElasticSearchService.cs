@@ -1,52 +1,28 @@
-﻿using ElasticSearchCRUD.Models;
-using Nest;
+﻿using Nest;
 
 namespace ElasticSearchCRUD.Services
 {
-    public class ElasticSearchService
+    public partial class ElasticSearchService
     {
-        private readonly IElasticClient _elasticClient;
+        private readonly IElasticClient _productsElasticClient;
+        private readonly ILogger<ElasticSearchService> _logger;
 
-        public ElasticSearchService(IConfiguration configuration)
+        public ElasticSearchService(
+            IConfiguration configuration,
+            ILogger<ElasticSearchService> logger)
+        {
+            var _productsElasticClient = CreateElasticClientAsync(configuration);
+            _logger = logger;
+        }
+
+        private IElasticClient CreateElasticClientAsync(IConfiguration configuration)
         {
             var settings = new ConnectionSettings(new Uri(configuration["ElasticSearch:Url"]))
                 .DefaultIndex(configuration["ElasticSearch:Index"]);
+            //.EnableApiVersioningHeader();                                                 // Headerlarni tekshirish kerak bo'lsa
+            //.BasicAuthentication(configuration["username"], configuration["password"]);   //Agar login parol bilan o'rnatilsa
 
-            _elasticClient = new ElasticClient(settings);
-        }
-
-        public async Task CreateIndexAsync()
-        {
-            var exists = await _elasticClient.Indices.ExistsAsync("products");
-            if (!exists.Exists)
-            {
-                var createIndexResponse = await _elasticClient.Indices.CreateAsync("products", c => c
-                    .Map(m => m
-                        .AutoMap()
-                    )
-                );
-            }
-        }
-
-        public async Task<bool> IndexDocumentAsync(Product product)
-        {
-            await CreateIndexAsync();
-            var indexed = await _elasticClient.IndexDocumentAsync(product);
-            return indexed.IsValid;
-        }
-
-        public async Task<ISearchResponse<Product>> SearchAsync(string query)
-        {
-            var response = await _elasticClient.SearchAsync<Product>(s => s
-                .Query(q => q
-                    .Match(m => m
-                        .Field(f => f.Name)
-                        .Query(query)
-                    )
-                )
-            );
-
-            return response;
+            return new ElasticClient(settings);
         }
     }
 }
