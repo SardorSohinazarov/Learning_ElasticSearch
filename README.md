@@ -8,6 +8,3 @@ Elasticsearch bilan ishlovchi sodda .NET Core servis. Ushbu loyiha mahsulotlar (
 - Elasticsearch
 - [NEST](https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/index.html) — Elasticsearch uchun .NET client
 - Newtonsoft.Json — loglar uchun
-
-## 📁 Loyiha tuzilmasi
-
