@@ -1,19 +1,10 @@
-```Docker compose
-elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.1
-    container_name: elasticsearch
-    environment:
-      - node.name=elasticsearch
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - esdata:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-```
+# Elastic Search CRUD
+
+Elasticsearch bilan ishlovchi sodda .NET Core servis. Ushbu loyiha mahsulotlar (`Product`) ustida CRUD (Create, Read, Update, Delete) amallarini bajarish hamda fuzzy (xira) qidiruv funksiyasini taqdim etadi.
+
+## 📦 Texnologiyalar
+
+- .NET 6 / 7
+- Elasticsearch
+- [NEST](https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/index.html) — Elasticsearch uchun .NET client
+- Newtonsoft.Json — loglar uchun
