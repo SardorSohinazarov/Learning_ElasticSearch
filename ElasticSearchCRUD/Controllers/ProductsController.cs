@@ -10,7 +10,7 @@ namespace ElasticSearchCRUD.Controllers
     {
         private readonly ElasticSearchService _elasticSearchService;
 
-        public ProductsController(ElasticSearchService elasticSearchService) 
+        public ProductsController(ElasticSearchService elasticSearchService)
             => _elasticSearchService = elasticSearchService;
 
         [HttpPost("create")]
