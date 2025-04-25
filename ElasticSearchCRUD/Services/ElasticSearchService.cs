@@ -11,7 +11,7 @@ namespace ElasticSearchCRUD.Services
             IConfiguration configuration,
             ILogger<ElasticSearchService> logger)
         {
-            var _productsElasticClient = CreateElasticClientAsync(configuration);
+            _productsElasticClient = CreateElasticClientAsync(configuration);
             _logger = logger;
         }
 
