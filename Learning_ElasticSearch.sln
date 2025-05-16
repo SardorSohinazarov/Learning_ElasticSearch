@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchCRUD", "Elasti
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F1C54EC1-634D-4505-8FE5-1D133ACA6CA8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fuzzy_Algorithms", "Fuzzy_Algorithms", "{1C76DA13-FD51-4D9D-9239-F521ADFCE525}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levenshtein", "FuzzyAlgorithms\Levenshtein\Levenshtein.csproj", "{2CF6DD69-18C2-4688-A5B6-33ECCADF9082}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{F1C54EC1-634D-4505-8FE5-1D133ACA6CA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C54EC1-634D-4505-8FE5-1D133ACA6CA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1C54EC1-634D-4505-8FE5-1D133ACA6CA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF6DD69-18C2-4688-A5B6-33ECCADF9082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF6DD69-18C2-4688-A5B6-33ECCADF9082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF6DD69-18C2-4688-A5B6-33ECCADF9082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF6DD69-18C2-4688-A5B6-33ECCADF9082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2CF6DD69-18C2-4688-A5B6-33ECCADF9082} = {1C76DA13-FD51-4D9D-9239-F521ADFCE525}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E262950D-AD8A-4353-A154-B914E46E4260}
