@@ -10,7 +10,6 @@
 // Ikkita so'zni boshidan harflarni birma bir tekshirib keturadi
 // xato bo'sa 1 qo'shib keturadi qisqacha asosiy farq
 // https://chatgpt.com/share/68276bda-efa0-8005-9cf2-c75870985dea
-// yani men o'ylaganimdan ozgina farqi bu ketma ket harflar almashtirish mumkin bo'lsa 1 emas 0 qo'shadi
 
 public class Program
 {
