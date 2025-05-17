@@ -11,15 +11,17 @@
 // xato bo'sa 1 qo'shib keturadi qisqacha asosiy farq
 // https://chatgpt.com/share/68276bda-efa0-8005-9cf2-c75870985dea
 
+
 public class Program
 {
     private static void Main(string[] args)
     {
-        string str1 = "kitten";
-        string str2 = "sitting";
+        string str1 = "APPLE";
+        string str2 = "APRLE";
         int distance = LevenshteinDistance(str1, str2);
         Console.WriteLine($"Levenshtein distance between '{str1}' and '{str2}' is {distance}.");
     }
+
     public static int LevenshteinDistance(string a, string b)
     {
         int[,] dp = new int[a.Length + 1, b.Length + 1];
@@ -40,11 +42,12 @@ public class Program
             {
                 int cost = a[i - 1] == b[j - 1] ? 0 : 1;
 
+                var insertion = dp[i, j - 1] + 1; // qo'shish
+                var deletion = dp[i - 1, j] + 1; // o'chirish
+                var substitution = dp[i - 1, j - 1] + cost; // almashtirish
+
                 /// Shu joy o'zgarishni minimumini qo'yib ketadi
-                dp[i, j] = Math.Min(
-                    Math.Min(dp[i - 1, j] + 1,    // deletion
-                                dp[i, j - 1] + 1),   // insertion
-                                dp[i - 1, j - 1] + cost); // substitution
+                dp[i, j] = Min(insertion, deletion, substitution);
             }
 
             PrintMatrix(dp);
@@ -53,7 +56,10 @@ public class Program
         return dp[a.Length, b.Length];
     }
 
-    public static void PrintMatrix(int[,] matrix)
+    private static int Min(int insertion, int deletion, int substitution) 
+        => Math.Min(Math.Min(insertion, deletion), substitution);
+
+    private static void PrintMatrix(int[,] matrix)
     {
         var rows = matrix.GetLength(0);
         var cols = matrix.GetLength(1);
