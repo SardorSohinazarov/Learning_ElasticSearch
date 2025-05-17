@@ -6,14 +6,15 @@
 /// Damerau-Levenshtein distance algorithm implementation.
 /// Levenshtein distance dan farqi shundaki
 /// Surilib ketgan harflarni ham hisobga oladi
+/// Transpozitsiya ya'ni ketma-ket ikki harfni joyini almashtirish (masalan, ad ↔ da) operatsiyasini ham qo‘shadi.
 /// </summary>
 
 public class Program
 {
     private static void Main(string[] args)
     {
-        string str1 = "kitten";
-        string str2 = "sitting";
+        string str1 = "sardor";
+        string str2 = "asardor";
         int distance = DamerauLevenshteinDistance(str1, str2);
         Console.WriteLine($"Damerau Levenshtein distance between '{str1}' and '{str2}' is {distance}.");
     }
@@ -41,12 +42,14 @@ public class Program
             {
                 int cost = source[i - 1] == target[j - 1] ? 0 : 1;
 
-                dp[i, j] = Math.Min(
-                    Math.Min(dp[i - 1, j] + 1,           // deletion
-                             dp[i, j - 1] + 1),          // insertion
-                             dp[i - 1, j - 1] + cost);   // substitution
+                var deletion = dp[i - 1, j] + 1; // o'chirish
+                var insertion = dp[i, j - 1] + 1; // qo'shish
+                var substitution = dp[i - 1, j - 1] + cost; // almashtirish
 
-                // Transposition
+                dp[i, j] = Min(deletion, insertion, substitution);
+
+                // Levenshtein distance dan yagona farqi shu
+                // transpozitsiya qo'shadi
                 if (i > 1 && j > 1 &&
                     source[i - 1] == target[j - 2] &&
                     source[i - 2] == target[j - 1])
@@ -61,6 +64,8 @@ public class Program
         return dp[lenSrc, lenTgt];
     }
 
+    private static int Min(int deletion, int insertion, int substitution) 
+        => Math.Min(Math.Min(deletion, insertion), substitution);
 
     public static void PrintMatrix(int[,] matrix)
     {
