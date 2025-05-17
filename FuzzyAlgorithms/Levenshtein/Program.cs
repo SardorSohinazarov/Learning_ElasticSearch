@@ -1,6 +1,5 @@
 ﻿// Todolar
 // https://en.wikipedia.org/wiki/Levenshtein_distance
-// https://medium.com/@art3330/levenshtein-distance-fundamentals-817b6f7f1718
 // https://medium.com/@ethannam/understanding-the-levenshtein-distance-equation-for-beginners-c4285a5604f0
 // https://medium.com/@anirudhm187/edit-distance-d314bc204350
 // https://leetcode.com/problems/edit-distance/submissions/1635705322/
@@ -8,7 +7,17 @@
 // Lekin
 // Tushundim hammasini
 // Ikkita so'zni boshidan harflarni birma bir tekshirib keturadi
-// xato bo'sa 1 qo'shib keturadi qisqacha asosiy farq
+// teng emas bo'lsa almashtirish xarajati 1
+// biri bor ikkinchisi yo'q bo'lsa o'chirish xarajati 1
+// biri yo'q ikkinchisi bor bo'lsa qo'shish xarajati 1
+// https://medium.com/@art3330/levenshtein-distance-fundamentals-817b6f7f1718
+// da keltirilishicha
+
+// O'chirish narxi [ i, j-1] + 1
+// Kiritish narxi [ i-1, j] + 1
+// O'zgartirish narxi [ i-1, j-1] + m(a, b)
+
+// qisqacha asosiy farq
 // https://chatgpt.com/share/68276bda-efa0-8005-9cf2-c75870985dea
 
 
